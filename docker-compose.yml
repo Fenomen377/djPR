@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+#    command: gunicorn djangoflowers.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/djPR
+    ports:
+      - "8000:8000"
+    networks:
+      - women
+#  nginx:
+#    build: ./nginx
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - web
+#      - db
+#    networks:
+#      - engineer-network
+
+networks:
+  women:
+    driver: bridge
+volumes:
+  data:
